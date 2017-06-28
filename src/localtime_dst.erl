@@ -13,20 +13,17 @@
     check/2
    ]).
 
--compile([export_all]).
-
-
 %% check(DateTime, TimeZone) -> is_in_dst | is_not_in_dst | ambiguous_time | time_not_exists
 %%  DateTime = DateTime()
 %%  TimeZone = tuple()
 check(DateTime, Timezone) when is_list(Timezone) ->
-    case lists:keyfind(localtime:get_timezone(Timezone), 1, ?tz_database) of
-        false ->
+    case maps:find(localtime:get_timezone(Timezone), ?tz_database) of
+        error ->
             {error, unknown_tz};
-        TZ ->
+        {ok, TZ} ->
             check(DateTime, TZ)
     end;
-check({Date = {Year, _, _},Time}, {_, _, _, _Shift, DstShift, DstStartRule, DstStartTime, DstEndRule, DstEndTime}) ->
+check({Date = {Year, _, _},Time}, {_, _, _Shift, DstShift, DstStartRule, DstStartTime, DstEndRule, DstEndTime}) ->
     DstStartDay = get_dst_day_of_year(DstStartRule, Year),
     DstEndDay = get_dst_day_of_year(DstEndRule, Year),
     CurrDay = get_day_of_year(Date),
@@ -140,7 +137,7 @@ get_day_of_year_test() ->
     ?assertEqual(62, get_dst_day_of_year({1,wed,mar}, 2010)).
 
 check_test() ->
-    Tz = {"Europe/Moscow",{"MSK","MSK"},{"MSD","MSD"},180,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
+    Tz = {{"MSK","MSK"},{"MSD","MSD"},180,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
     ?assertEqual(is_not_in_dst, localtime_dst:check({{2010, 1, 1}, {10, 10, 0}}, Tz)),
     ?assertEqual(is_in_dst, check({{2010, 7, 8}, {10, 10, 0}}, Tz)),
     ?assertEqual(is_not_in_dst, check({{2010, 3, 28}, {1, 59, 0}}, Tz)),
@@ -158,7 +155,7 @@ check_test() ->
     ?assertEqual(is_not_in_dst, check({{2010, 10, 31}, {3, 00, 0}}, Tz)),
 
     %% DST starts at hour 24; DST ends at hour 0:
-    TzGaza = {"Asia/Gaza",{"EET","EET"},{"EEST","EEST"},120,60,{last,thu,mar},{24,0},{4,fri,sep},{0,0}},
+    TzGaza = {{"EET","EET"},{"EEST","EEST"},120,60,{last,thu,mar},{24,0},{4,fri,sep},{0,0}},
     ?assertEqual(is_not_in_dst,   check({{2014, 3, 27}, {23, 59, 59}}, TzGaza)),
     %% Currently ST->DT transitions in the last hour of the day are not handled correctly.
     %% ?assertEqual(time_not_exists, check({{2014, 3, 28}, { 0, 00, 00}}, TzGaza)),
@@ -173,7 +170,7 @@ check_test() ->
     ?assertEqual(is_not_in_dst,   check({{2014, 9, 26}, { 0, 00, 00}}, TzGaza)),
 
     %% DST starts at hour 0; DST ends at hour 0.
-    TzDamascus = {"Asia/Damascus",{"EET","EET"},{"EEST","EEST"},120,60,{last,fri,mar},{0,0},{last,fri,oct},{0,0}},
+    TzDamascus = {{"EET","EET"},{"EEST","EEST"},120,60,{last,fri,mar},{0,0},{last,fri,oct},{0,0}},
     ?assertEqual(is_not_in_dst,   check({{2014,  3, 27}, {23, 59, 59}}, TzDamascus)),
     ?assertEqual(time_not_exists, check({{2014,  3, 28}, { 0, 00, 00}}, TzDamascus)),
     ?assertEqual(time_not_exists, check({{2014,  3, 28}, { 0, 59, 59}}, TzDamascus)),
@@ -185,7 +182,7 @@ check_test() ->
     ?assertEqual(is_not_in_dst,   check({{2014, 10, 31}, { 0, 00, 00}}, TzDamascus)),
 
     %% DST ends before starts (southern hemisphere):
-    TzMontevideo = {"America/Montevideo",{"UYT","UYT"},{"UYST","UYST"},-180,60,{1,sun,oct},{2,0},{2,sun,mar},{2,0}},
+    TzMontevideo = {{"UYT","UYT"},{"UYST","UYST"},-180,60,{1,sun,oct},{2,0},{2,sun,mar},{2,0}},
     ?assertEqual(is_in_dst,       check({{2014,  3, 09}, { 0, 59, 59}}, TzMontevideo)),
     ?assertEqual(ambiguous_time,  check({{2014,  3, 09}, { 1, 00, 00}}, TzMontevideo)),
     ?assertEqual(ambiguous_time,  check({{2014,  3, 09}, { 1, 59, 59}}, TzMontevideo)),

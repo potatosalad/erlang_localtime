@@ -27,12 +27,12 @@
 %%  DstLocalDateTime = DateTime()
 %%  ErrDescr = atom(), unknown_tz
 utc_to_local(UtcDateTime, Timezone) ->
-    case lists:keyfind(get_timezone(Timezone), 1, ?tz_database) of
-        false ->
+    case maps:find(get_timezone(Timezone), ?tz_database) of
+        error ->
             {error, unknown_tz};
-        {_Tz, _, _, Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime} ->
+        {ok, {_, _, Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime}} ->
             adjust_datetime(UtcDateTime, Shift);
-        TzRule = {_, _, _, Shift, DstShift, _, _, _, _} ->
+        {ok, TzRule = {_, _, Shift, DstShift, _, _, _, _}} ->
             LocalDateTime = adjust_datetime(UtcDateTime, Shift),
             case localtime_dst:check(LocalDateTime, TzRule) of
                 Res when (Res == is_in_dst) or (Res == time_not_exists) ->
@@ -51,12 +51,12 @@ utc_to_local(UtcDateTime, Timezone) ->
 %%  DstUtcDateTime = DateTime()
 %%  ErrDescr = atom(), unknown_tz
 local_to_utc(LocalDateTime, Timezone) ->
-    case lists:keyfind(get_timezone(Timezone), 1, ?tz_database) of
-        false ->
+    case maps:find(get_timezone(Timezone), ?tz_database) of
+        error ->
             {error, unknown_tz};
-        {_Tz, _, _, Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime} ->
+        {ok, {_, _, Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime}} ->
             adjust_datetime(LocalDateTime, invert_shift(Shift));
-        TzRule = {_, _, _, Shift, DstShift, _, _, _, _} ->
+        {ok, TzRule = {_, _, Shift, DstShift, _, _, _, _}} ->
             UtcDateTime = adjust_datetime(LocalDateTime, invert_shift(Shift)),
             case localtime_dst:check(LocalDateTime, TzRule) of
                 is_in_dst ->
@@ -122,12 +122,12 @@ local_to_local_dst(LocalDateTime, TimezoneFrom, TimezoneTo) ->
 %%  DstName = String()
 %%  ErrDesc = atom(), unknown_tz
 tz_name(LocalDateTime, Timezone) ->
-    case lists:keyfind(get_timezone(Timezone), 1, ?tz_database) of
-        false ->
+    case maps:find(get_timezone(Timezone), ?tz_database) of
+        error ->
             {error, unknown_tz};
-        {_Tz, StdName, undef, _Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime} ->
+        {ok, {StdName, undef, _Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime}} ->
             StdName;
-        TzRule = {_, StdName, DstName, _Shift, _DstShift, _, _, _, _} ->
+        {ok, TzRule = {StdName, DstName, _Shift, _DstShift, _, _, _, _}} ->
             case localtime_dst:check(LocalDateTime, TzRule) of
                 is_in_dst ->
                     DstName;
@@ -150,12 +150,12 @@ tz_name(LocalDateTime, Timezone) ->
 %%  {Shift, DstShift} - returns, when shift is ambiguous
 %%  ErrDesc = atom(), unknown_tz
 tz_shift(LocalDateTime, Timezone) ->
-    case lists:keyfind(get_timezone(Timezone), 1, ?tz_database) of
-        false ->
+    case maps:find(get_timezone(Timezone), ?tz_database) of
+        error ->
             {error, unknown_tz};
-        {_Tz, _StdName, undef, Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime} ->
+        {ok, {_StdName, undef, Shift, _DstShift, undef, _DstStartTime, undef, _DstEndTime}} ->
             fmt_min(Shift);
-        TzRule = {_, _StdName, _DstName, Shift, DstShift, _, _, _, _} ->
+        {ok, TzRule = {_StdName, _DstName, Shift, DstShift, _, _, _, _}} ->
             case localtime_dst:check(LocalDateTime, TzRule) of
                 is_in_dst ->
                     fmt_min(Shift + DstShift);
@@ -190,7 +190,7 @@ get_timezone(TimeZone) ->
     get_timezone_inner(TimeZone).
 
 list_timezones() ->
-    dict:fetch_keys(?tz_index).
+    maps:keys(?tz_index).
 
 %% =======================================================================
 %% privates
@@ -227,7 +227,7 @@ tr_char([H|T], From, To, Acc) ->
 -define(SPACE_CHAR, 32).
 get_timezone_inner(TimeZone) ->
     TimeZoneNoSpaces = tr_char(TimeZone, ?SPACE_CHAR, $_),
-    case dict:find(TimeZoneNoSpaces, ?tz_index)  of
+    case maps:find(TimeZoneNoSpaces, ?tz_index) of
         error ->
             TimeZoneNoSpaces;
         {ok, [TZName | _]} ->
