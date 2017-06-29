@@ -7,24 +7,24 @@
 
 -include("tz_database.hrl").
 
-build_tzlist(TzName, Name, Dict) ->
-    case dict:find(Name, Dict) of
-        error ->
-            dict:store(Name, [TzName], Dict);
-        {ok, TzNames} ->
-            dict:store(Name, TzNames ++ [TzName], Dict)
+build_tzlist(TzName, Name, Map) ->
+    case maps:get(Name, Map, undefined) of
+        undefined ->
+            Map#{Name => [TzName]};
+        TzNames ->
+            Map#{Name => TzNames ++ [TzName]}
     end.
 
 build_index() ->
-    F = fun({TzName,{Name,_},{DName,_},_,_,_,_,_,_}, Acc) ->
-                NewDict = build_tzlist(TzName, Name, Acc),
-                build_tzlist(TzName, DName, NewDict);
-           ({TzName,{Name,_},undef,_,_,_,_,_,_}, Acc) ->
+    F = fun(TzName, {{Name,_},{DName,_},_,_,_,_,_,_}, Acc) ->
+                NewMap = build_tzlist(TzName, Name, Acc),
+                build_tzlist(TzName, DName, NewMap);
+           (TzName, {{Name,_},undef,_,_,_,_,_,_}, Acc) ->
                 build_tzlist(TzName, Name, Acc)
         end,
-    I = lists:foldl(F, dict:new(), ?tz_database),
+    I = maps:fold(F, #{}, ?tz_database),
     {ok, File} = file:open("tz_index.hrl", [write]),
-    io:fwrite(File, "-define(tz_index, ~p).", [I]).
+    io:fwrite(File, "-define(tz_index,~n    ~100p).~n", [I]).
 
 %% So this can be run from escript:
 main(_Args) ->
