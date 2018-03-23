@@ -165,7 +165,6 @@ sub offset_minutes {
   return $offset;
 }
 
-
 sub rule_line {
   my ($l) = @_;
   my ($RULE, $name, $from, $to, $type, $in, $on, $at, $save, $letters) = split(m/\s+/, $l);
@@ -325,17 +324,33 @@ sub zone_line {
   #       {"America/Los Angeles",{"PST","Pacific Standard Time"},{"PDT","Pacific Daylight Time"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
   #       {"America/Puerto Rico",{"AST","AST"},undef,-240,0,undef,{0,0},undef,{0,0}},
 
-  $output{$name} = '"#ZONE#" => ' .
-    build_term(
-      [ $name1, $name1 ],					# StdAbbr, StdName
-      defined $name2 ? [ $name2, $name2 ] : undef,	# DstAbbr, DstName
-      $gmtoff_min,					# StdMin
-      $rule2->[RULE_SAVED],				# DstMin
-      $rule2->[RULE_DATE],				# DstStartDay,
-      rulestart($rule2->[RULE_TIME], $gmtoff_min, 0, $name),		# DstStartTime
-      $rule1->[RULE_DATE],				# DstEndDay
-      rulestart($rule1->[RULE_TIME], $gmtoff_min, $rule2->[RULE_SAVED], $name), # DstEndTime
-    );
+  my @o = (
+    #'"#ZONE#" => {',						# "TimeZoneName"
+    format_timezone_abbr($name1),			# {"StdAbbr","StdName"}
+    format_timezone_abbr($name2),                       # {"DstAbbr","DstName"} or undef
+    $gmtoff_min,					# StdMin
+    $rule2->[RULE_SAVED],				# DstMin
+    format_rule_date($rule2->[RULE_DATE]),		# {Count,Day,Month} or undef when DST starts
+    format_rule_time(rulestart($rule2->[RULE_TIME], $gmtoff_min, 0, $name)), # {DSTStartHour,DstStartMin}
+    format_rule_date($rule1->[RULE_DATE]),		# {Count,Day,Month} or undef when DST ends
+    format_rule_time(rulestart($rule1->[RULE_TIME], $gmtoff_min, $rule2->[RULE_SAVED], $name)), # {DSTEndHour,DSTEndMin}
+);
+  $output{$name} = '"#ZONE#" => {' . join(',', @o) . '}';
+}
+
+sub format_timezone_abbr {
+  my ($name) = @_;
+  return defined $name ? sprintf('{"%s","%s"}', $name, $name) : 'undef';
+}
+
+sub format_rule_date {
+  my ($date) = @_;
+  return defined $date ? sprintf('{%s,%s,%s}', @$date) : 'undef';
+}
+
+sub format_rule_time {
+  my ($time) = @_;
+  return sprintf('{%d,%d}', int($time / MPH), $time % MPH);
 }
 
 sub zonename {
@@ -389,24 +404,7 @@ sub rulestart {
     $start += $save;
   }
 
-  return [ int($start / MPH), $start % MPH ];
-}
-
-sub build_term {
-  my @term;
-  foreach my $e (@_) {
-    if (! defined $e) {
-      push(@term, 'undef');
-    } elsif (ref($e) eq 'ARRAY') {
-      push(@term, build_term(@$e));
-    } elsif ($e =~ m/^(\-?\d+|[a-z].*)$/) {
-      push(@term, $e);			# number or term
-    } else {
-      push(@term, "\"$e\"");		# string
-    }
-  }
-
-  return '{' . join(',', @term) . '}';
+  return $start;
 }
 
 sub link_line {
