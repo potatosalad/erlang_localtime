@@ -22,7 +22,7 @@
 
 -define(tz_database,
 #{
-      %% Automatically generated from the time zone database version 2018c for 2018-03-23.
+      %% Automatically generated from the time zone database version 2018d for 2018-03-24.
 
       %% Problems:
       %%   Ignored May 13 in Rule Morocco.
@@ -260,7 +260,7 @@
       "America/Winnipeg" => {{"CST","CST"},{"CDT","CDT"},-360,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Yakutat" => {{"AKST","AKST"},{"AKDT","AKDT"},-540,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Yellowknife" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
-      "Antarctica/Casey" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
+      "Antarctica/Casey" => {{"+08","+08"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Antarctica/Davis" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
       "Antarctica/DumontDUrville" => {{"+10","+10"},undef,600,0,undef,{0,0},undef,{0,0}},
       "Antarctica/Macquarie" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
@@ -303,9 +303,9 @@
       "Asia/Dubai" => {{"+04","+04"},undef,240,0,undef,{0,0},undef,{0,0}},
       "Asia/Dushanbe" => {{"+05","+05"},undef,300,0,undef,{0,0},undef,{0,0}},
       "Asia/Famagusta" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sun,mar},{3,0},{last,sun,oct},{4,0}},
-      "Asia/Gaza" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sat,mar},{1,0},{last,sat,oct},{1,0}},
+      "Asia/Gaza" => {{"EET","EET"},{"EEST","EEST"},120,60,{4,sat,mar},{1,0},{last,sat,oct},{1,0}},
       "Asia/Harbin" => {{"CST","CST"},undef,480,0,undef,{0,0},undef,{0,0}},
-      "Asia/Hebron" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sat,mar},{1,0},{last,sat,oct},{1,0}},
+      "Asia/Hebron" => {{"EET","EET"},{"EEST","EEST"},120,60,{4,sat,mar},{1,0},{last,sat,oct},{1,0}},
       "Asia/Ho_Chi_Minh" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
       "Asia/Hong_Kong" => {{"HKT","HKT"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Asia/Hovd" => {{"+07/+08","+07/+08"},undef,420,0,undef,{0,0},undef,{0,0}},

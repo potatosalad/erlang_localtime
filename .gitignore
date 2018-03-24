@@ -1,1 +1,6 @@
+.eunit
 ebin/
+db/tzdata
+db/tzout
+db/tzdata-latest.tar.gz
+

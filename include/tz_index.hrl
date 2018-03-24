@@ -207,7 +207,7 @@
            "America/Indiana/Marengo","EST5EDT","America/Toronto","America/Detroit",
            "America/Nassau","America/Indianapolis"],
       "+08" =>
-          ["Singapore","Asia/Brunei","Asia/Kuching","Asia/Irkutsk","Etc/GMT-8",
+          ["Singapore","Asia/Brunei","Antarctica/Casey","Asia/Kuching","Asia/Irkutsk","Etc/GMT-8",
            "Asia/Kuala_Lumpur","Asia/Singapore"],
       "+08/+09" => ["Asia/Ulaanbaatar","Asia/Ulan_Bator","Asia/Manila","Asia/Choibalsan"],
       "-01" => ["Atlantic/Cape_Verde","Etc/GMT+1","Atlantic/Azores","America/Scoresbysund"],
@@ -257,7 +257,7 @@
       "NST" => ["Canada/Newfoundland","America/St_Johns"],
       "-0930" => ["Pacific/Marquesas"],
       "+11" =>
-          ["Australia/LHI","Pacific/Pohnpei","Asia/Sakhalin","Antarctica/Casey","Pacific/Ponape",
+          ["Australia/LHI","Pacific/Pohnpei","Asia/Sakhalin","Pacific/Ponape",
            "Australia/Lord_Howe","Asia/Srednekolymsk","Etc/GMT-11","Pacific/Norfolk",
            "Antarctica/Macquarie","Asia/Magadan","Pacific/Kosrae","Pacific/Guadalcanal",
            "Pacific/Bougainville"],
