@@ -22,7 +22,7 @@
 
 -define(tz_database,
 #{
-      %% Automatically generated from the time zone database version 2018d for 2018-03-24.
+      %% Automatically generated from the time zone database version 2018e for 2018-05-06.
 
       %% Problems:
       %%   Ignored May 13 in Rule Morocco.
@@ -339,7 +339,7 @@
       "Asia/Oral" => {{"+05","+05"},undef,300,0,undef,{0,0},undef,{0,0}},
       "Asia/Phnom_Penh" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
       "Asia/Pontianak" => {{"WIB","WIB"},undef,420,0,undef,{0,0},undef,{0,0}},
-      "Asia/Pyongyang" => {{"KST","KST"},undef,510,0,undef,{0,0},undef,{0,0}},
+      "Asia/Pyongyang" => {{"KST","KST"},undef,540,0,undef,{0,0},undef,{0,0}},
       "Asia/Qatar" => {{"+03","+03"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Asia/Qyzylorda" => {{"+06","+06"},undef,360,0,undef,{0,0},undef,{0,0}},
       "Asia/Rangoon" => {{"+0630","+0630"},undef,390,0,undef,{0,0},undef,{0,0}},
@@ -427,7 +427,7 @@
       "EST" => {{"EST","EST"},undef,-300,0,undef,{0,0},undef,{0,0}},
       "EST5EDT" => {{"EST","EST"},{"EDT","EDT"},-300,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "Egypt" => {{"EET","EET"},undef,120,0,undef,{0,0},undef,{0,0}},
-      "Eire" => {{"GMT","GMT"},{"IST","IST"},0,60,{last,sun,mar},{1,0},{last,sun,oct},{2,0}},
+      "Eire" => {{"IST","IST"},{"GMT","GMT"},60,-60,{last,sun,oct},{2,0},{last,sun,mar},{1,0}},
       "Etc/GMT" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Etc/GMT+0" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Etc/GMT+1" => {{"-01","-01"},undef,-1,0,undef,{0,0},undef,{0,0}},
@@ -477,7 +477,7 @@
       "Europe/Busingen" => {{"CET","CET"},{"CEST","CEST"},60,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
       "Europe/Chisinau" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
       "Europe/Copenhagen" => {{"CET","CET"},{"CEST","CEST"},60,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
-      "Europe/Dublin" => {{"GMT","GMT"},{"IST","IST"},0,60,{last,sun,mar},{1,0},{last,sun,oct},{2,0}},
+      "Europe/Dublin" => {{"IST","IST"},{"GMT","GMT"},60,-60,{last,sun,oct},{2,0},{last,sun,mar},{1,0}},
       "Europe/Gibraltar" => {{"CET","CET"},{"CEST","CEST"},60,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
       "Europe/Guernsey" => {{"GMT","GMT"},{"BST","BST"},0,60,{last,sun,mar},{1,0},{last,sun,oct},{2,0}},
       "Europe/Helsinki" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sun,mar},{3,0},{last,sun,oct},{4,0}},
