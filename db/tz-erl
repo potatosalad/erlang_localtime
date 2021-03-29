@@ -25,17 +25,19 @@ use Getopt::Long;
 use Time::Local qw( timelocal timelocal_nocheck );
 use Data::Dump;
 
+use constant DPM_31 => 31;
+use constant DPM_30 => 30;
 use constant DPW => 7;		# Days per week.
 use constant HPD => 24;		# Hours per day.
 use constant MPH => 60;		# Minutes per hour.
 use constant SPECIFICITY_MAX => 100;
 
 use constant {
-  RULE_DATE		=> 0,
-  RULE_SAVED		=> 1,
-  RULE_TIME		=> 2,
-  RULE_LETTERS		=> 3,
-  RULE_SPECIFICITY	=> 4,
+    RULE_DATE		=> 0,
+    RULE_SAVED		=> 1,
+    RULE_TIME		=> 2,
+    RULE_LETTERS		=> 3,
+    RULE_SPECIFICITY	=> 4,
 };
 use constant RULE_NULL => [ undef, 0, '0W', '-', 0 ];
 
@@ -44,9 +46,9 @@ my $output_file;
 my $date;
 
 GetOptions(
-  'version=s'	=> \$version,
-  'output=s'	=> \$output_file,
-  'date=s'	=> \$date,
+    'version=s'	=> \$version,
+    'output=s'	=> \$output_file,
+    'date=s'	=> \$date,
 ) or die;
 
 my @data = @ARGV;
@@ -86,8 +88,8 @@ if (defined $output_file) {
 }
 
 printf $ofh "      %%%% Automatically generated from the time zone database%s for %04d-%02d-%02d.\n",
-  (defined $version ? " version $version" : ''),
-  $current_year, $current_month + 1, $current_day;
+    (defined $version ? " version $version" : ''),
+    $current_year, $current_month + 1, $current_day;
 
 print $ofh "\n";
 print $ofh "      %% Problems:\n";
@@ -98,7 +100,7 @@ print $ofh join(",\n", map {
   (my $o = $output{$_}) =~ s/#ZONE#/$_/;
   "      $o";
 } (sort keys %output)),
-  "\n";
+    "\n";
 
 close($ofh) or die "close $output_file failed: $!\n";
 
@@ -126,18 +128,18 @@ sub process_data {
       $l eq '' and next;
 
       my $linetype = do {
-	if ($l =~ m/^((\S+)\s+\S+)/) {
-	  # Continuation line.
-	  $last_linetype = $2;
-	  $last_lineprefix = $1;
-	} else {
-	  $l = $last_lineprefix . $l;
-	}
-	$last_linetype;
+        if ($l =~ m/^((\S+)\s+\S+)/) {
+          # Continuation line.
+          $last_linetype = $2;
+          $last_lineprefix = $1;
+        } else {
+          $l = $last_lineprefix . $l;
+        }
+        $last_linetype;
       };
 
       if (defined(my $h = $handler->{$linetype})) {
-	$h->($l);
+        $h->($l);
       }
     }
 
@@ -209,8 +211,8 @@ sub rule_line {
       # If start day is not a multiple of a week, round it to nearest week.
       $rule = [ int(($2-1+int(DPW/2))/DPW) + 1, lc($1), lc($in) ]; # e.g. [ '2', sun', 'nov' ]
       if (($2-1) % DPW) {
-	warn "on $on fuzz for $name -> $rule->[0]";
-	push(@problem, "Rounded $in $on to [@$rule] in Rule $name.");
+        warn "on $on fuzz for $name -> $rule->[0]";
+        push(@problem, "Rounded $in $on to [@$rule] in Rule $name.");
       }
     } elsif ($on =~ m/^last(\w+)$/) {
       $rule = [ 'last', lc($1), lc($in) ]; # e.g. [ 'last', 'sun', 'apr' ]
@@ -223,20 +225,20 @@ sub rule_line {
       $at_minutes = $2 * MPH + $3; my $z = $4;
       if ($1 eq '-') { $at_minutes = -$at_minutes; }
       if ($z eq '' or $z eq 'w') {
-	# Change specified at local (pre-change) wall-clock time.
-	$at_minutes .= 'W';
+        # Change specified at local (pre-change) wall-clock time.
+        $at_minutes .= 'W';
       } elsif ($z eq 's') {
-	# Change specified at local standard time.
-	$at_minutes .= 'S';
+        # Change specified at local standard time.
+        $at_minutes .= 'S';
       } elsif ($z eq 'g' or $z eq 'u' or $z eq 'z') {
-	# Change specified at UTC.
-	$at_minutes .= 'Z';
+        # Change specified at UTC.
+        $at_minutes .= 'Z';
       }
     }
     my $specificity =
-      $to eq 'only' ? 1 :
-      $to eq 'max'  ? SPECIFICITY_MAX :
-	              $to - $from + 1;
+        $to eq 'only' ? 1 :
+            $to eq 'max'  ? SPECIFICITY_MAX :
+                $to - $from + 1;
 
     return [ $rule, $save_minutes, $at_minutes, $letters, $specificity ];
   };
@@ -251,14 +253,17 @@ sub rule_line {
 # Process a Zone line and updates the %output hash.
 sub zone_line {
   my ($l) = @_;
+  # print("Line: $l\n");
   my ($ZONE, $name, $gmtoff, $rules, $format, $until) = split(m/\s+/, $l, 6);
   # We ignore any zone line that has a definite until (end) time that
   # is in the past.
   if (defined $until) {
     my $until_year = ($until =~ m/^(\d+)/)[0];
-    if ($until_year >= $current_year) {
-      die "until $until not handled";
-    }
+    # if ($until_year >= $current_year) {
+    #   print("Until year: $until_year\n");
+    #   print("Current year: $current_year\n");
+    #   die "until $until not handled";
+    # }
     return;
   }
 
@@ -325,16 +330,16 @@ sub zone_line {
   #       {"America/Puerto Rico",{"AST","AST"},undef,-240,0,undef,{0,0},undef,{0,0}},
 
   my @o = (
-    #'"#ZONE#" => {',						# "TimeZoneName"
-    format_timezone_abbr($name1),			# {"StdAbbr","StdName"}
-    format_timezone_abbr($name2),                       # {"DstAbbr","DstName"} or undef
-    $gmtoff_min,					# StdMin
-    $rule2->[RULE_SAVED],				# DstMin
-    format_rule_date($rule2->[RULE_DATE]),		# {Count,Day,Month} or undef when DST starts
-    format_rule_time(rulestart($rule2->[RULE_TIME], $gmtoff_min, 0, $name)), # {DSTStartHour,DstStartMin}
-    format_rule_date($rule1->[RULE_DATE]),		# {Count,Day,Month} or undef when DST ends
-    format_rule_time(rulestart($rule1->[RULE_TIME], $gmtoff_min, $rule2->[RULE_SAVED], $name)), # {DSTEndHour,DSTEndMin}
-);
+      #'"#ZONE#" => {',						# "TimeZoneName"
+      format_timezone_abbr($name1),			# {"StdAbbr","StdName"}
+      format_timezone_abbr($name2),                       # {"DstAbbr","DstName"} or undef
+      $gmtoff_min,					# StdMin
+      $rule2->[RULE_SAVED],				# DstMin
+      format_rule_date($rule2->[RULE_DATE]),		# {Count,Day,Month} or undef when DST starts
+      format_rule_time(rulestart($rule2->[RULE_TIME], $gmtoff_min, 0, $name)), # {DSTStartHour,DstStartMin}
+      format_rule_date($rule1->[RULE_DATE]),		# {Count,Day,Month} or undef when DST ends
+      format_rule_time(rulestart($rule1->[RULE_TIME], $gmtoff_min, $rule2->[RULE_SAVED], $name)), # {DSTEndHour,DSTEndMin}
+  );
   $output{$name} = '"#ZONE#" => {' . join(',', @o) . '}';
 }
 
@@ -427,26 +432,36 @@ INIT {
 
 sub on_to_day_of_month {
   my ($on, $year, $month) = @_;
-
   my $day;
   if ($on =~ m/^\d+$/) {
     $day = $on;
   } else {
     my ($desired_dow, $time_base);
     if ($on =~ m/^(\w+)>=(\d+)$/) {
-      $desired_dow = $dow_from_name{$1}; my $desired_day = $2;
+      $desired_dow = $dow_from_name{$1};
+      my $desired_day = $2;
       $time_base = timelocal(0, 0, 0, $desired_day, $month, $year);
+    } elsif ($on =~ m/^(\w+)<=(\d+)$/) {
+      $desired_dow = $dow_from_name{$1};
+      my $desired_day = $2;
+      $time_base = timelocal(0, 0, 0, $desired_day, $month - 1, $year);
     } elsif ($on =~ m/^last(\w+)$/) {
       $desired_dow = $dow_from_name{$1};
       # One week before the beginning of the next month.
-      $time_base = timelocal_nocheck(0, 0, 0, - DPW, $month + 1, $year);
+      $time_base = timelocal_nocheck(0, 0, 0, -DPW, $month + 1, $year);
     } else {
       die "match $on failed";
     }
     ($day, my $dow) = (localtime($time_base))[3,6];
-    if ($dow != $desired_dow) { $day += (DPW + $desired_dow - $dow) % DPW; }
+    if ($dow != $desired_dow) {
+      $day += (DPW + $desired_dow - $dow) % DPW;
+      if($day > 31 && ($month == 1 || $month == 3 || $month == 5 || $month == 7 || $month == 8 || $month == 10 || $month == 12)) {
+        $day = ($day % DPM_31 == 0)? DPM_31 : $day % DPM_31;
+      }else{
+        $day = ($day % DPM_30 == 0)? DPM_30 : $day % DPM_30;
+      }
+    }
   }
-
   return $day;
 }
 
@@ -457,7 +472,7 @@ sub last_active_epoch {
   # $from is a year.
   # $to is a year, or 'only', or 'max'.
   # $in is a month name (e.g., 'Jan').
-  # $on is a day-of-month, or a day-of-week>=day-of-month, or 'last'day-of-week.
+  # $on is a day-of-month, or a day-of-week>=day-of-month, or a day-of-week<=day-of-month or 'last'day-of-week.
 
   my $month = $mon_from_name{$in};
 
@@ -472,7 +487,7 @@ sub last_active_epoch {
   # Now check the rule's to time.  If the rule covers the current
   # year, but doesn't fire until later in the year, subtract a year.
   my $year = $to eq 'max' ? $current_year : $to eq 'only' ? $from : $to;
- event_fires_later_this_year: {
+  event_fires_later_this_year: {
     if ($year < $current_year) { last; }
     if ($year == $current_year && $month < $current_month) { last; }
     my $day = on_to_day_of_month($on, $year, $month);

@@ -1,8 +1,8 @@
 {application, 'erlang_localtime',
  [
-  {description, ""},
+  {description, "Erlang Localtime Application for Time Zone management in Erlang"},
   {applications, [kernel, stdlib]},
-  {vsn, "1.0.2017b"},
+  {vsn, "1.0.2021a"},
   {registered, []},
   {env, []},
   {applications, []}

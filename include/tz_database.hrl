@@ -22,26 +22,26 @@
 
 -define(tz_database,
 #{
-      %% Automatically generated from the time zone database version 2018e for 2018-05-06.
+            %% Automatically generated from the time zone database version 2021a for 2021-03-29.
 
       %% Problems:
-      %%   Ignored May 13 in Rule Morocco.
-      %%   Ignored Jun 17 in Rule Morocco.
-      %%   Ignored Mar 22 in Rule Iran.
-      %%   Ignored Sep 22 in Rule Iran.
+      %%   Ignored Apr 11 in Rule Morocco.
+      %%   Ignored May 16 in Rule Morocco.
+      %%   Ignored Mar 21 in Rule Iran.
+      %%   Ignored Sep 21 in Rule Iran.
       %%   Rounded Mar Fri>=23 to [4 fri mar] in Rule Zion.
-      %%   Rounded Jan Sun>=14 to [3 sun jan] in Rule Fiji.
-      %%   Rounded May Sun>=9 to [2 sun may] in Rule Chile.
-      %%   Rounded Aug Sun>=9 to [2 sun aug] in Rule Chile.
-      %%   Discarded excess rules for Zone Africa/Casablanca.
-      %%   Discarded excess rules for Zone Africa/El_Aaiun.
-      %%   Moving rule to beginning of day for Zone America/Godthab.
-      %%   Moving rule to beginning of day for Zone America/Godthab.
+      %%   Rounded Mar Sat>=24 to [4 sat mar] in Rule Palestine.
+      %%   Rounded Oct Sat>=24 to [4 sat oct] in Rule Palestine.
+      %%   Rounded Jan Sun>=12 to [3 sun jan] in Rule Fiji.
+      %%   Rounded Apr Sun>=2 to [1 sun apr] in Rule Chile.
+      %%   Rounded Sep Sun>=2 to [1 sun sep] in Rule Chile.
+      %%   Moving rule to beginning of day for Zone America/Nuuk.
+      %%   Moving rule to beginning of day for Zone America/Nuuk.
       %%   Moving rule to beginning of day for Zone Pacific/Easter.
       %%   Moving rule to beginning of day for Zone Pacific/Easter.
 
       "Africa/Abidjan" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
-      "Africa/Accra" => {{"GMT/+0020","GMT/+0020"},undef,0,0,undef,{0,0},undef,{0,0}},
+      "Africa/Accra" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Addis_Ababa" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Africa/Algiers" => {{"CET","CET"},undef,60,0,undef,{0,0},undef,{0,0}},
       "Africa/Asmara" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
@@ -54,19 +54,19 @@
       "Africa/Brazzaville" => {{"WAT","WAT"},undef,60,0,undef,{0,0},undef,{0,0}},
       "Africa/Bujumbura" => {{"CAT","CAT"},undef,120,0,undef,{0,0},undef,{0,0}},
       "Africa/Cairo" => {{"EET","EET"},undef,120,0,undef,{0,0},undef,{0,0}},
-      "Africa/Casablanca" => {{"WET","WET"},{"WEST","WEST"},0,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
+      "Africa/Casablanca" => {{"+01","+01"},{"+00","+00"},60,-60,undef,{3,0},undef,{2,0}},
       "Africa/Ceuta" => {{"CET","CET"},{"CEST","CEST"},60,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
       "Africa/Conakry" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Dakar" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Dar_es_Salaam" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Africa/Djibouti" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Africa/Douala" => {{"WAT","WAT"},undef,60,0,undef,{0,0},undef,{0,0}},
-      "Africa/El_Aaiun" => {{"WET","WET"},{"WEST","WEST"},0,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
+      "Africa/El_Aaiun" => {{"+01","+01"},{"+00","+00"},60,-60,undef,{3,0},undef,{2,0}},
       "Africa/Freetown" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Gaborone" => {{"CAT","CAT"},undef,120,0,undef,{0,0},undef,{0,0}},
       "Africa/Harare" => {{"CAT","CAT"},undef,120,0,undef,{0,0},undef,{0,0}},
       "Africa/Johannesburg" => {{"SAST","SAST"},undef,120,0,undef,{0,0},undef,{0,0}},
-      "Africa/Juba" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
+      "Africa/Juba" => {{"CAT","CAT"},undef,120,0,undef,{0,0},undef,{0,0}},
       "Africa/Kampala" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Africa/Khartoum" => {{"CAT","CAT"},undef,120,0,undef,{0,0},undef,{0,0}},
       "Africa/Kigali" => {{"CAT","CAT"},undef,120,0,undef,{0,0},undef,{0,0}},
@@ -89,7 +89,7 @@
       "Africa/Nouakchott" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Ouagadougou" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Porto-Novo" => {{"WAT","WAT"},undef,60,0,undef,{0,0},undef,{0,0}},
-      "Africa/Sao_Tome" => {{"WAT","WAT"},undef,60,0,undef,{0,0},undef,{0,0}},
+      "Africa/Sao_Tome" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Timbuktu" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Africa/Tripoli" => {{"EET","EET"},undef,120,0,undef,{0,0},undef,{0,0}},
       "Africa/Tunis" => {{"CET","CET"},undef,60,0,undef,{0,0},undef,{0,0}},
@@ -127,7 +127,7 @@
       "America/Boise" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Buenos_Aires" => {{"-03/-02","-03/-02"},undef,-180,0,undef,{0,0},undef,{0,0}},
       "America/Cambridge_Bay" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
-      "America/Campo_Grande" => {{"-04","-04"},{"-03","-03"},-240,60,{1,sun,nov},{0,0},{3,sun,feb},{0,0}},
+      "America/Campo_Grande" => {{"-04/-03","-04/-03"},undef,-240,0,undef,{0,0},undef,{0,0}},
       "America/Cancun" => {{"EST","EST"},undef,-300,0,undef,{0,0},undef,{0,0}},
       "America/Caracas" => {{"-04","-04"},undef,-240,0,undef,{0,0},undef,{0,0}},
       "America/Catamarca" => {{"-03","-03"},undef,-180,0,undef,{0,0},undef,{0,0}},
@@ -139,10 +139,10 @@
       "America/Cordoba" => {{"-03/-02","-03/-02"},undef,-180,0,undef,{0,0},undef,{0,0}},
       "America/Costa_Rica" => {{"CST","CST"},undef,-360,0,undef,{0,0},undef,{0,0}},
       "America/Creston" => {{"MST","MST"},undef,-420,0,undef,{0,0},undef,{0,0}},
-      "America/Cuiaba" => {{"-04","-04"},{"-03","-03"},-240,60,{1,sun,nov},{0,0},{3,sun,feb},{0,0}},
+      "America/Cuiaba" => {{"-04/-03","-04/-03"},undef,-240,0,undef,{0,0},undef,{0,0}},
       "America/Curacao" => {{"AST","AST"},undef,-240,0,undef,{0,0},undef,{0,0}},
       "America/Danmarkshavn" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
-      "America/Dawson" => {{"PST","PST"},{"PDT","PDT"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
+      "America/Dawson" => {{"MST","MST"},undef,-420,0,undef,{0,0},undef,{0,0}},
       "America/Dawson_Creek" => {{"MST","MST"},undef,-420,0,undef,{0,0},undef,{0,0}},
       "America/Denver" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Detroit" => {{"EST","EST"},{"EDT","EDT"},-300,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
@@ -215,6 +215,7 @@
       "America/North_Dakota/Beulah" => {{"CST","CST"},{"CDT","CDT"},-360,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/North_Dakota/Center" => {{"CST","CST"},{"CDT","CDT"},-360,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/North_Dakota/New_Salem" => {{"CST","CST"},{"CDT","CDT"},-360,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
+      "America/Nuuk" => {{"-03","-03"},{"-02","-02"},-180,60,{last,sun,mar},{0,0},{last,sun,oct},{0,0}},
       "America/Ojinaga" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Panama" => {{"EST","EST"},undef,-300,0,undef,{0,0},undef,{0,0}},
       "America/Pangnirtung" => {{"EST","EST"},{"EDT","EDT"},-300,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
@@ -235,9 +236,9 @@
       "America/Rosario" => {{"-03/-02","-03/-02"},undef,-180,0,undef,{0,0},undef,{0,0}},
       "America/Santa_Isabel" => {{"PST","PST"},{"PDT","PDT"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Santarem" => {{"-03","-03"},undef,-180,0,undef,{0,0},undef,{0,0}},
-      "America/Santiago" => {{"-04","-04"},{"-03","-03"},-240,60,{2,sun,aug},{0,0},{2,sun,may},{0,0}},
+      "America/Santiago" => {{"-04","-04"},{"-03","-03"},-240,60,{1,sun,sep},{0,0},{1,sun,apr},{0,0}},
       "America/Santo_Domingo" => {{"AST","AST"},undef,-240,0,undef,{0,0},undef,{0,0}},
-      "America/Sao_Paulo" => {{"-03","-03"},{"-02","-02"},-180,60,{1,sun,nov},{0,0},{3,sun,feb},{0,0}},
+      "America/Sao_Paulo" => {{"-03/-02","-03/-02"},undef,-180,0,undef,{0,0},undef,{0,0}},
       "America/Scoresbysund" => {{"-01","-01"},{"+00","+00"},-60,60,{last,sun,mar},{0,0},{last,sun,oct},{1,0}},
       "America/Shiprock" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Sitka" => {{"AKST","AKST"},{"AKDT","AKDT"},-540,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
@@ -256,14 +257,14 @@
       "America/Tortola" => {{"AST","AST"},undef,-240,0,undef,{0,0},undef,{0,0}},
       "America/Vancouver" => {{"PST","PST"},{"PDT","PDT"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Virgin" => {{"AST","AST"},undef,-240,0,undef,{0,0},undef,{0,0}},
-      "America/Whitehorse" => {{"PST","PST"},{"PDT","PDT"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
+      "America/Whitehorse" => {{"MST","MST"},undef,-420,0,undef,{0,0},undef,{0,0}},
       "America/Winnipeg" => {{"CST","CST"},{"CDT","CDT"},-360,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Yakutat" => {{"AKST","AKST"},{"AKDT","AKDT"},-540,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "America/Yellowknife" => {{"MST","MST"},{"MDT","MDT"},-420,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
-      "Antarctica/Casey" => {{"+08","+08"},undef,480,0,undef,{0,0},undef,{0,0}},
+      "Antarctica/Casey" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
       "Antarctica/Davis" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
       "Antarctica/DumontDUrville" => {{"+10","+10"},undef,600,0,undef,{0,0},undef,{0,0}},
-      "Antarctica/Macquarie" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
+      "Antarctica/Macquarie" => {{"AEST","AEST"},{"AEDT","AEDT"},600,60,{1,sun,oct},{2,0},{1,sun,apr},{3,0}},
       "Antarctica/Mawson" => {{"+05","+05"},undef,300,0,undef,{0,0},undef,{0,0}},
       "Antarctica/McMurdo" => {{"NZST","NZST"},{"NZDT","NZDT"},720,60,{last,sun,sep},{2,0},{1,sun,apr},{3,0}},
       "Antarctica/Palmer" => {{"-03","-03"},undef,-180,0,undef,{0,0},undef,{0,0}},
@@ -303,9 +304,9 @@
       "Asia/Dubai" => {{"+04","+04"},undef,240,0,undef,{0,0},undef,{0,0}},
       "Asia/Dushanbe" => {{"+05","+05"},undef,300,0,undef,{0,0},undef,{0,0}},
       "Asia/Famagusta" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sun,mar},{3,0},{last,sun,oct},{4,0}},
-      "Asia/Gaza" => {{"EET","EET"},{"EEST","EEST"},120,60,{4,sat,mar},{1,0},{last,sat,oct},{1,0}},
+      "Asia/Gaza" => {{"EET","EET"},{"EEST","EEST"},120,60,{4,sat,mar},{0,0},{4,sat,oct},{1,0}},
       "Asia/Harbin" => {{"CST","CST"},undef,480,0,undef,{0,0},undef,{0,0}},
-      "Asia/Hebron" => {{"EET","EET"},{"EEST","EEST"},120,60,{4,sat,mar},{1,0},{last,sat,oct},{1,0}},
+      "Asia/Hebron" => {{"EET","EET"},{"EEST","EEST"},120,60,{4,sat,mar},{0,0},{4,sat,oct},{1,0}},
       "Asia/Ho_Chi_Minh" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
       "Asia/Hong_Kong" => {{"HKT","HKT"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Asia/Hovd" => {{"+07/+08","+07/+08"},undef,420,0,undef,{0,0},undef,{0,0}},
@@ -330,7 +331,7 @@
       "Asia/Macau" => {{"CST","CST"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Asia/Magadan" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
       "Asia/Makassar" => {{"WITA","WITA"},undef,480,0,undef,{0,0},undef,{0,0}},
-      "Asia/Manila" => {{"+08/+09","+08/+09"},undef,480,0,undef,{0,0},undef,{0,0}},
+      "Asia/Manila" => {{"PST","PST"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Asia/Muscat" => {{"+04","+04"},undef,240,0,undef,{0,0},undef,{0,0}},
       "Asia/Nicosia" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sun,mar},{3,0},{last,sun,oct},{4,0}},
       "Asia/Novokuznetsk" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
@@ -341,7 +342,8 @@
       "Asia/Pontianak" => {{"WIB","WIB"},undef,420,0,undef,{0,0},undef,{0,0}},
       "Asia/Pyongyang" => {{"KST","KST"},undef,540,0,undef,{0,0},undef,{0,0}},
       "Asia/Qatar" => {{"+03","+03"},undef,180,0,undef,{0,0},undef,{0,0}},
-      "Asia/Qyzylorda" => {{"+06","+06"},undef,360,0,undef,{0,0},undef,{0,0}},
+      "Asia/Qostanay" => {{"+06","+06"},undef,360,0,undef,{0,0},undef,{0,0}},
+      "Asia/Qyzylorda" => {{"+05","+05"},undef,300,0,undef,{0,0},undef,{0,0}},
       "Asia/Rangoon" => {{"+0630","+0630"},undef,390,0,undef,{0,0},undef,{0,0}},
       "Asia/Riyadh" => {{"+03","+03"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Asia/Saigon" => {{"+07","+07"},undef,420,0,undef,{0,0},undef,{0,0}},
@@ -354,7 +356,7 @@
       "Asia/Taipei" => {{"CST","CST"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Asia/Tashkent" => {{"+05","+05"},undef,300,0,undef,{0,0},undef,{0,0}},
       "Asia/Tbilisi" => {{"+04","+04"},undef,240,0,undef,{0,0},undef,{0,0}},
-      "Asia/Tehran" => {{"+0330","+0330"},{"+0430","+0430"},210,60,undef,{0,0},undef,{0,0}},
+      "Asia/Tehran" => {{"+0330","+0330"},{"+0430","+0430"},210,60,undef,{24,0},undef,{24,0}},
       "Asia/Tel_Aviv" => {{"IST","IST"},{"IDT","IDT"},120,60,{4,fri,mar},{2,0},{last,sun,oct},{2,0}},
       "Asia/Thimbu" => {{"+06","+06"},undef,360,0,undef,{0,0},undef,{0,0}},
       "Asia/Thimphu" => {{"+06","+06"},undef,360,0,undef,{0,0},undef,{0,0}},
@@ -408,7 +410,7 @@
       "Australia/Yancowinna" => {{"ACST","ACST"},{"ACDT","ACDT"},570,60,{1,sun,oct},{2,0},{1,sun,apr},{3,0}},
       "Brazil/Acre" => {{"-05","-05"},undef,-300,0,undef,{0,0},undef,{0,0}},
       "Brazil/DeNoronha" => {{"-02","-02"},undef,-120,0,undef,{0,0},undef,{0,0}},
-      "Brazil/East" => {{"-03","-03"},{"-02","-02"},-180,60,{1,sun,nov},{0,0},{3,sun,feb},{0,0}},
+      "Brazil/East" => {{"-03/-02","-03/-02"},undef,-180,0,undef,{0,0},undef,{0,0}},
       "Brazil/West" => {{"-04","-04"},undef,-240,0,undef,{0,0},undef,{0,0}},
       "CET" => {{"CET","CET"},{"CEST","CEST"},60,60,{last,sun,mar},{2,0},{last,sun,oct},{3,0}},
       "CST6CDT" => {{"CST","CST"},{"CDT","CDT"},-360,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
@@ -419,9 +421,9 @@
       "Canada/Newfoundland" => {{"NST","NST"},{"NDT","NDT"},-210,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "Canada/Pacific" => {{"PST","PST"},{"PDT","PDT"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "Canada/Saskatchewan" => {{"CST","CST"},undef,-360,0,undef,{0,0},undef,{0,0}},
-      "Canada/Yukon" => {{"PST","PST"},{"PDT","PDT"},-480,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
-      "Chile/Continental" => {{"-04","-04"},{"-03","-03"},-240,60,{2,sun,aug},{0,0},{2,sun,may},{0,0}},
-      "Chile/EasterIsland" => {{"-06","-06"},{"-05","-05"},-360,60,{2,sun,aug},{0,0},{2,sun,may},{0,0}},
+      "Canada/Yukon" => {{"MST","MST"},undef,-420,0,undef,{0,0},undef,{0,0}},
+      "Chile/Continental" => {{"-04","-04"},{"-03","-03"},-240,60,{1,sun,sep},{0,0},{1,sun,apr},{0,0}},
+      "Chile/EasterIsland" => {{"-06","-06"},{"-05","-05"},-360,60,{1,sun,sep},{0,0},{1,sun,apr},{0,0}},
       "Cuba" => {{"CST","CST"},{"CDT","CDT"},-300,60,{2,sun,mar},{0,0},{1,sun,nov},{1,0}},
       "EET" => {{"EET","EET"},{"EEST","EEST"},120,60,{last,sun,mar},{3,0},{last,sun,oct},{4,0}},
       "EST" => {{"EST","EST"},undef,-300,0,undef,{0,0},undef,{0,0}},
@@ -459,7 +461,7 @@
       "Etc/GMT-9" => {{"+09","+09"},undef,9,0,undef,{0,0},undef,{0,0}},
       "Etc/GMT0" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Etc/Greenwich" => {{"GMT","GMT"},undef,0,0,undef,{0,0},undef,{0,0}},
-      "Etc/UCT" => {{"UCT","UCT"},undef,0,0,undef,{0,0},undef,{0,0}},
+      "Etc/UCT" => {{"UTC","UTC"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Etc/UTC" => {{"UTC","UTC"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Etc/Universal" => {{"UTC","UTC"},undef,0,0,undef,{0,0},undef,{0,0}},
       "Etc/Zulu" => {{"UTC","UTC"},undef,0,0,undef,{0,0},undef,{0,0}},
@@ -547,7 +549,7 @@
       "Indian/Mauritius" => {{"+04/+05","+04/+05"},undef,240,0,undef,{0,0},undef,{0,0}},
       "Indian/Mayotte" => {{"EAT","EAT"},undef,180,0,undef,{0,0},undef,{0,0}},
       "Indian/Reunion" => {{"+04","+04"},undef,240,0,undef,{0,0},undef,{0,0}},
-      "Iran" => {{"+0330","+0330"},{"+0430","+0430"},210,60,undef,{0,0},undef,{0,0}},
+      "Iran" => {{"+0330","+0330"},{"+0430","+0430"},210,60,undef,{24,0},undef,{24,0}},
       "Israel" => {{"IST","IST"},{"IDT","IDT"},120,60,{4,fri,mar},{2,0},{last,sun,oct},{2,0}},
       "Jamaica" => {{"EST","EST"},undef,-300,0,undef,{0,0},undef,{0,0}},
       "Japan" => {{"JST","JST"},undef,540,0,undef,{0,0},undef,{0,0}},
@@ -569,11 +571,11 @@
       "Pacific/Bougainville" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
       "Pacific/Chatham" => {{"+1245","+1245"},{"+1345","+1345"},765,60,{last,sun,sep},{2,45},{1,sun,apr},{3,45}},
       "Pacific/Chuuk" => {{"+10","+10"},undef,600,0,undef,{0,0},undef,{0,0}},
-      "Pacific/Easter" => {{"-06","-06"},{"-05","-05"},-360,60,{2,sun,aug},{0,0},{2,sun,may},{0,0}},
+      "Pacific/Easter" => {{"-06","-06"},{"-05","-05"},-360,60,{1,sun,sep},{0,0},{1,sun,apr},{0,0}},
       "Pacific/Efate" => {{"+11/+12","+11/+12"},undef,660,0,undef,{0,0},undef,{0,0}},
       "Pacific/Enderbury" => {{"+13","+13"},undef,780,0,undef,{0,0},undef,{0,0}},
       "Pacific/Fakaofo" => {{"+13","+13"},undef,780,0,undef,{0,0},undef,{0,0}},
-      "Pacific/Fiji" => {{"+12","+12"},{"+13","+13"},720,60,{1,sun,nov},{2,0},{3,sun,jan},{3,0}},
+      "Pacific/Fiji" => {{"+12","+12"},{"+13","+13"},720,60,{2,sun,nov},{2,0},{3,sun,jan},{3,0}},
       "Pacific/Funafuti" => {{"+12","+12"},undef,720,0,undef,{0,0},undef,{0,0}},
       "Pacific/Galapagos" => {{"-06/-05","-06/-05"},undef,-360,0,undef,{0,0},undef,{0,0}},
       "Pacific/Gambier" => {{"-09","-09"},undef,-540,0,undef,{0,0},undef,{0,0}},
@@ -589,7 +591,7 @@
       "Pacific/Midway" => {{"SST","SST"},undef,-660,0,undef,{0,0},undef,{0,0}},
       "Pacific/Nauru" => {{"+12","+12"},undef,720,0,undef,{0,0},undef,{0,0}},
       "Pacific/Niue" => {{"-11","-11"},undef,-660,0,undef,{0,0},undef,{0,0}},
-      "Pacific/Norfolk" => {{"+11","+11"},undef,660,0,undef,{0,0},undef,{0,0}},
+      "Pacific/Norfolk" => {{"+11","+11"},{"+12","+12"},660,60,{1,sun,oct},{2,0},{1,sun,apr},{3,0}},
       "Pacific/Noumea" => {{"+11/+12","+11/+12"},undef,660,0,undef,{0,0},undef,{0,0}},
       "Pacific/Pago_Pago" => {{"SST","SST"},undef,-660,0,undef,{0,0},undef,{0,0}},
       "Pacific/Palau" => {{"+09","+09"},undef,540,0,undef,{0,0},undef,{0,0}},
@@ -613,7 +615,7 @@
       "ROK" => {{"KST","KST"},undef,540,0,undef,{0,0},undef,{0,0}},
       "Singapore" => {{"+08","+08"},undef,480,0,undef,{0,0},undef,{0,0}},
       "Turkey" => {{"+03","+03"},undef,180,0,undef,{0,0},undef,{0,0}},
-      "UCT" => {{"UCT","UCT"},undef,0,0,undef,{0,0},undef,{0,0}},
+      "UCT" => {{"UTC","UTC"},undef,0,0,undef,{0,0},undef,{0,0}},
       "US/Alaska" => {{"AKST","AKST"},{"AKDT","AKDT"},-540,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "US/Aleutian" => {{"HST","HST"},{"HDT","HDT"},-600,60,{2,sun,mar},{2,0},{1,sun,nov},{2,0}},
       "US/Arizona" => {{"MST","MST"},undef,-420,0,undef,{0,0},undef,{0,0}},
