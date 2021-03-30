@@ -259,11 +259,9 @@ sub zone_line {
   # is in the past.
   if (defined $until) {
     my $until_year = ($until =~ m/^(\d+)/)[0];
-    # if ($until_year >= $current_year) {
-    #   print("Until year: $until_year\n");
-    #   print("Current year: $current_year\n");
-    #   die "until $until not handled";
-    # }
+    if ($until_year > $current_year) {
+      die "until $until not handled";
+    }
     return;
   }
 
